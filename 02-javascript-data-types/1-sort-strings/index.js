@@ -8,11 +8,11 @@ export function sortStrings(arr, param = 'asc') {
   const arrCopy = [...arr];
   const newArr = arrCopy.sort(((a, b) => {
     if (param === 'asc') {
-      return a.localeCompare(b, {localeMatcher: ['ru', 'en']}, {
+      return a.localeCompare(b, ['ru', 'en'], {
         caseFirst: 'upper'
       });
     } else {
-      return b.localeCompare(a, {localeMatcher: ['ru', 'en']}, {
+      return b.localeCompare(a, ['ru', 'en'], {
         caseFirst: 'upper'
       });
     }
