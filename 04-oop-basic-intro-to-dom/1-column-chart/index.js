@@ -5,10 +5,10 @@ export default class ColumnChart {
 
   constructor({
     data = [],
-    label = '',
+    label  = '',
     link = '',
     value = 0,
-    formatHeading = data => data,
+    formatHeading = data => data
   } = {}) {
     this.data = data;
     this.label = label;
@@ -23,19 +23,18 @@ export default class ColumnChart {
     const scale = this.chartHeight / maxValue;
 
     return data
-    .map(item => {
-      const percent = (item / maxValue * 100).toFixed(0);
+      .map(item => {
+        const percent = (item / maxValue * 100).toFixed(0);
 
-      return `<div style="--value: ${Math.floor(item * scale)}" data-tooltip="${percent}%"></div>`;
-    })
-    .join('');
+        return `<div style="--value: ${Math.floor(item * scale)}" data-tooltip="${percent}%"></div>`;
+      })
+      .join('');
   }
 
   getLink() {
-    return this.link ? `<a class="column-chart__link" href="${this.link}">View all</a>` : '';
+    return this.link ? `<a href="${this.link}" class="column-chart__link">View all</a>` : '';
   }
-
-  get template() {
+  template() {
     return `
       <div class="column-chart column-chart_loading" style="--chart-height: ${this.chartHeight}">
         <div class="column-chart__title">
@@ -57,7 +56,7 @@ export default class ColumnChart {
   render() {
     const element = document.createElement('div');
 
-    element.innerHTML = this.template;
+    element.innerHTML = this.template();
 
     this.element = element.firstElementChild;
 
